@@ -48,7 +48,8 @@ public class EnemySpawner {
 
         switch (level){   //Aquí se crean los niveles ( 1,2,3,4...)
             case 1:
-                enemies = crearEnemigosNivelDonut(gameRect); //los enemigos que tendra el nivel
+                //enemies = crearEnemigosNivelDonut(gameRect); //los enemigos que tendra el nivel
+                enemies = crearEnemigosMios(gameRect);
                 break;
             case 2:
                 enemies = crearEnemigosNivelPaquito(gameRect);
@@ -144,12 +145,12 @@ public class EnemySpawner {
 
     public static List<AEnemy> crearEnemigosMios(Rect gameRect) { //Metodo de nuestros bichos.
         List<AEnemy> enemies = new ArrayList<>();
-        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, 0, vx, 0, E_SHOT_GUN));
-        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 7, 1, -vx, 0, E_SHOT_GUN));
-        enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, 0, vx, vy, E_SHOT_NOTHING));
-        enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 7, 0, -vx, vy, E_SHOT_NOTHING));
-        enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 3, 0, -vx, vy, E_SHOT_NOTHING));
-        enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 4, 0, vx, vy, E_SHOT_NOTHING));
+        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, 5, 2*vx, 0, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 2, 10, 3*vx, 0, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 7, 1, 4*vx, vy, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 6, 3, 5*vx, vy, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_ROCKET, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 8, 1, 2*vx, vy, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 4, 0, 3*vx, vy, E_SHOT_GUN));
         return enemies;
     }
 
