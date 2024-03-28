@@ -46,9 +46,9 @@ public class EnemySpawner {
         List<AEnemy> enemies = new ArrayList<>();
         level = level % LEVELS;
 
-        switch (level){
+        switch (level){   //Aquí se crean los niveles ( 1,2,3,4...)
             case 1:
-                enemies = crearEnemigosNivelDonut(gameRect);
+                enemies = crearEnemigosNivelDonut(gameRect); //los enemigos que tendra el nivel
                 break;
             case 2:
                 enemies = crearEnemigosNivelPaquito(gameRect);
@@ -130,6 +130,17 @@ public class EnemySpawner {
     }
 
     public static List<AEnemy> crearEnemigosNivelPulpo(Rect gameRect) {
+        List<AEnemy> enemies = new ArrayList<>();
+        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, 0, vx, 0, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 7, 1, -vx, 0, E_SHOT_GUN));
+        enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, 0, vx, vy, E_SHOT_NOTHING));
+        enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 7, 0, -vx, vy, E_SHOT_NOTHING));
+        enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 3, 0, -vx, vy, E_SHOT_NOTHING));
+        enemies.add(createEnemyShip(E_DIAGONAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 4, 0, vx, vy, E_SHOT_NOTHING));
+        return enemies;
+    }
+
+    public static List<AEnemy> crearEnemigosMios(Rect gameRect) { //Metodo de nuestros bichos.
         List<AEnemy> enemies = new ArrayList<>();
         enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 0, 0, vx, 0, E_SHOT_GUN));
         enemies.add(createEnemyShip(E_NORMAL, ENEMYSHIP_SPRITE_IMAGE_2, gameRect, 7, 1, -vx, 0, E_SHOT_GUN));
