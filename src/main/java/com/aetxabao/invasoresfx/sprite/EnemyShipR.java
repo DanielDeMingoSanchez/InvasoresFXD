@@ -11,6 +11,7 @@ public class EnemyShipR extends EnemyShip {
 
     @Override
     public void update() {
-        super.update();
+        if (x > gameRect.right - width - xSpeed || x + xSpeed < gameRect.left) xSpeed = -xSpeed;
+        if(y > gameRect.bottom - height) y=gameRect.top+height;
     }
 }
