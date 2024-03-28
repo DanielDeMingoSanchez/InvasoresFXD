@@ -81,6 +81,10 @@ public class EnemySpawner {
             case E_NORMAL:
                 e = new EnemyShip(gameRect, enemyImage, TICKSxFRAME);
                 break;
+            case E_ROCKET:
+            default:
+                e = new EnemyShipR(gameRect, enemyImage, TICKSxFRAME);
+                break;
         }
         if (shot == E_SHOT_GUN){
             e.setWeapon(new Gun());
