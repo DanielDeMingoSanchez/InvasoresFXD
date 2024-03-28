@@ -1,9 +1,18 @@
 package com.aetxabao.invasoresfx.sprite;
 
+import com.aetxabao.invasoresfx.util.Rect;
+import javafx.scene.image.Image;
+
 public class EnemyTow extends AEnemy implements IHaveShield{
 
     int impactMax;
     int impacts;
+
+    public EnemyTow(Image img, int rows, int cols, int impactMax) {
+        super(img, rows, cols);
+        this.impactMax = impactMax;
+    }
+
     @Override
     public void update() {
         updateFrame();
@@ -19,4 +28,16 @@ public class EnemyTow extends AEnemy implements IHaveShield{
     public boolean impact() {
         return false;
     }
+
+    @Override
+    public Rect getRect() {
+        int sliceWidth = width / rows;
+        int numSlices = rows - currentFrame;
+        int ax = (width - sliceWidth * numSlices) / 2;
+        int rectWidth = x + ax + numSlices * sliceWidth;
+        return new Rect(x + ax, y, rectWidth, y + height);
+    }
+
+
+
 }
