@@ -79,6 +79,9 @@ public class EnemySpawner {
             case E_DIAGONAL:
                 e = new EnemyShipDiagonal(gameRect, enemyImage, TICKSxFRAME);
                 break;
+            case E_TOWER:
+                e = new EnemyTurret(gameRect, enemyImage, TICKSxFRAME);
+                break;
             case E_NORMAL:
                 e = new EnemyShip(gameRect, enemyImage, TICKSxFRAME);
                 break;
