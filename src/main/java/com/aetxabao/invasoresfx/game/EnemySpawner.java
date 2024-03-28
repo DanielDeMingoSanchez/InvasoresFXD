@@ -54,7 +54,6 @@ public class EnemySpawner {
                 enemies = crearEnemigosNivelPaquito(gameRect);
                 break;
             case 3:
-            default:
                 enemies = crearEnemigosNivelPulpo(gameRect);
                 break;
             case 4:
@@ -80,7 +79,6 @@ public class EnemySpawner {
                 e = new EnemyShipDiagonal(gameRect, enemyImage, TICKSxFRAME);
                 break;
             case E_NORMAL:
-            default:
                 e = new EnemyShip(gameRect, enemyImage, TICKSxFRAME);
                 break;
         }
