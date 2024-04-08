@@ -3,14 +3,18 @@ package com.aetxabao.invasoresfx.sprite;
 import com.aetxabao.invasoresfx.util.Rect;
 import javafx.scene.image.Image;
 
+import static com.aetxabao.invasoresfx.game.AppConsts.ebCOL;
+import static com.aetxabao.invasoresfx.game.AppConsts.ebROW;
+
 public class EnemyTow extends AEnemy implements IHaveShield{
 
     int impactMax;
     int impacts;
 
-    public EnemyTow(Image img, int rows, int cols, int impactMax) {
-        super(img, rows, cols);
+    public EnemyTow(Image img,int impactMax) {
+        super(img, ebROW, ebCOL);
         this.impactMax = impactMax;
+        this.impacts = 0;
     }
 
     @Override

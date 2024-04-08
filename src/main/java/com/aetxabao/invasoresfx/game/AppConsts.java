@@ -22,6 +22,9 @@ public final class AppConsts {
 
     public static final int eROW = 4;
     public static final int eCOL = 2;
+
+    public static final int ebROW = 4;
+    public static final int ebCOL = 2;
     static final double GAME_SPEED = 30;//steps per second
     static final Image ICON_16 = new Image(Main.class.getResource("icon/icon16.png").toString());
     static final Image ICON_32 = new Image(Main.class.getResource("icon/icon32.png").toString());
