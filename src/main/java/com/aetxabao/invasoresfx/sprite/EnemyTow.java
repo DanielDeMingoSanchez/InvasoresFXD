@@ -1,5 +1,6 @@
 package com.aetxabao.invasoresfx.sprite;
 
+import com.aetxabao.invasoresfx.sprite.weaponry.Ametralladora;
 import com.aetxabao.invasoresfx.util.Rect;
 import javafx.scene.image.Image;
 
@@ -8,6 +9,7 @@ import static com.aetxabao.invasoresfx.game.AppConsts.ebROW;
 
 public class EnemyTow extends AEnemy implements IHaveShield{
 
+    private Ametralladora Gun;
     int impactMax;
     int impacts;
 
@@ -15,6 +17,7 @@ public class EnemyTow extends AEnemy implements IHaveShield{
         super(img, ebROW, ebCOL);
         this.impactMax = impactMax;
         this.impacts = 0;
+        this.weapon = new Ametralladora();
     }
 
     @Override
@@ -27,6 +30,8 @@ public class EnemyTow extends AEnemy implements IHaveShield{
         currentFrame = impacts / impactsPerFrame; //resultado del marco.
         if (currentFrame >= rows - 1) currentFrame = rows - 2;//comprueba si la imagen se excede o no.
     }
+
+
 
     @Override
     public boolean impact() {
@@ -44,6 +49,7 @@ public class EnemyTow extends AEnemy implements IHaveShield{
         int rectWidth = x + ax + numSlices * sliceWidth;
         return new Rect(x + ax, y, rectWidth, y + height);
     }
+
 
 
 

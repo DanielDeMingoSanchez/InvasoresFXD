@@ -25,7 +25,7 @@ public final class AppConsts {
 
     public static final int ebROW = 4;
     public static final int ebCOL = 2;
-    static final double GAME_SPEED = 30;//steps per second
+    static final double GAME_SPEED = 60;//steps per second
     static final Image ICON_16 = new Image(Main.class.getResource("icon/icon16.png").toString());
     static final Image ICON_32 = new Image(Main.class.getResource("icon/icon32.png").toString());
     static final Image ICON_64 = new Image(Main.class.getResource("icon/icon64.png").toString());
@@ -33,7 +33,7 @@ public final class AppConsts {
     //endregion
 
     //region EnemyGenerator
-    final static int LEVELS = 3;
+    final static int LEVELS = 4;
     final static int TICKSxFRAME = 3;
     static final Image ENEMYSHIP_SPRITE_IMAGE_1 = new Image(Main.class.getResource("sprite/ei1.png").toString());
     static final Image ENEMYSHIP_SPRITE_IMAGE_2 = new Image(Main.class.getResource("sprite/ei2.png").toString());

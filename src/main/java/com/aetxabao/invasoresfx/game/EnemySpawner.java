@@ -2,13 +2,16 @@ package com.aetxabao.invasoresfx.game;
 
 import com.aetxabao.invasoresfx.game.enums.EEnemyShot;
 import com.aetxabao.invasoresfx.game.enums.EEnemyType;
+import com.aetxabao.invasoresfx.game.enums.EnemyTower;
 import com.aetxabao.invasoresfx.sprite.*;
 import com.aetxabao.invasoresfx.sprite.weaponry.Gun;
 import com.aetxabao.invasoresfx.util.Rect;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import static com.aetxabao.invasoresfx.game.AppConsts.*;
 import static com.aetxabao.invasoresfx.game.enums.EEnemyShot.*;
@@ -46,7 +49,7 @@ public class EnemySpawner {
         List<AEnemy> enemies = new ArrayList<>();
         level = level % LEVELS;
 
-        switch (level){   //Aquí se crean los niveles ( 1,2,3,4...)
+        switch (level) {   //Aquí se crean los niveles ( 1,2,3,4...)
             case 1:
                 //enemies = crearEnemigosNivelDonut(gameRect); //los enemigos que tendra el nivel
                 enemies = crearEnemigosMios(gameRect);
@@ -57,11 +60,16 @@ public class EnemySpawner {
             case 3:
                 enemies = crearEnemigosNivelPulpo(gameRect);
                 break;
-            case 4:
             default:
                 enemies = crearEnemigosMios(gameRect);
-                break;
         }
+
+        // Comprueba si no hay enemigos o se han eliminado todos
+        if (enemies.isEmpty()) {
+            // Incrementamos level para que pase al siguiente nivel
+            level = (level % LEVELS) + 1;
+        }
+
         return enemies;
     }
 
@@ -149,8 +157,68 @@ public class EnemySpawner {
     public static List<AEnemy> crearEnemigosMios(Rect gameRect) { //Metodo de nuestros bichos.
         List<AEnemy> enemies = new ArrayList<>();
 
+        // Espacio entre enemigos
+        int espacioHorizontal = 1;
+        int espacioVertical = 1;
+
+
+        ArrayList<ArrayList<Integer>> laberinto = new ArrayList<ArrayList<Integer>>();
+
+        // laberinto
+        laberinto.add(new ArrayList<>(Arrays.asList(1, 1, 1, 0, 0, 0, 0, 1, 1, 1)));
+        laberinto.add(new ArrayList<>(Arrays.asList(1, 0, 1, 1, 1, 1, 0, 0, 0, 1)));
+        laberinto.add(new ArrayList<>(Arrays.asList(1, 0, 0, 0, 1, 0, 1, 1, 0, 1)));
+        laberinto.add(new ArrayList<>(Arrays.asList(1, 0, 1, 0, 1, 0, 1, 0, 0, 1)));
+        laberinto.add(new ArrayList<>(Arrays.asList(1, 1, 1, 0, 1, 1, 1, 0, 1, 1)));
+        laberinto.add(new ArrayList<>(Arrays.asList(1, 0, 1, 0, 0, 0, 1, 0, 0, 1)));
+        laberinto.add(new ArrayList<>(Arrays.asList(1, 0, 1, 1, 1, 1, 1, 1, 0, 1)));
+        laberinto.add(new ArrayList<>(Arrays.asList(1, 0, 0, 0, 1, 0, 0, 0, 0, 1)));
+        laberinto.add(new ArrayList<>(Arrays.asList(1, 1, 1, 0, 1, 1, 1, 1, 1, 1)));
+        laberinto.add(new ArrayList<>(Arrays.asList(0, 0, 1, 0, 0, 0, 1, 0, 0, 0)));
+
+
+
+
+        // Velocidad del enemigo
+        int velocidad = 1;
+
+        // Generar enemigos según el diseño del laberinto
+        for (int fila = 0; fila < laberinto.size(); fila++) {
+            for (int columna = 0; columna < laberinto.get(fila).size(); columna++) {
+                if (laberinto.get(fila).get(columna) == 1) {
+                    // Calcular las coordenadas X e Y del enemigo
+                    int posX = columna * espacioHorizontal;
+                    int posY = fila * espacioVertical;
+
+                    // Agregar el enemigo a la lista
+                    enemies.add(eBarrera(E_BARRIERDOWN, ENEMYSHIP_SPRITE_IMAGE_2, 60, gameRect, posX, posY, velocidad));
+                }
+            }
+        }
 
         return enemies;
+
+
+    }
+
+
+
+    public static EnemyTow eBarrera(EEnemyType type, Image enemyImage, int impactsMax, Rect gameRect, int i, int j, int vy) {
+        EnemyTow e;
+        switch (type){
+            case E_TOWER:
+                e = new EnemyTower(enemyImage, impactsMax);
+                break;
+            case E_BARRIERDOWN:
+                e = new sinBarrera(enemyImage, impactsMax, vy);
+                break;
+            case E_BARRIER:
+            default:
+                e = new EnemyTow(enemyImage, impactsMax);
+                break;
+        }
+        e.setPos(getX(gameRect, i), getY(gameRect, j));
+        return e;
     }
 
 
