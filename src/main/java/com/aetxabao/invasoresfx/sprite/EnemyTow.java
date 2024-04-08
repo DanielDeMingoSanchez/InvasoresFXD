@@ -30,7 +30,10 @@ public class EnemyTow extends AEnemy implements IHaveShield{
 
     @Override
     public boolean impact() {
-        return false;
+        //contador de impactos
+        impacts++;
+        updateFrame();
+        return impacts==impactMax;
     }
 
     @Override
