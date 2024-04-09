@@ -51,8 +51,7 @@ public class EnemySpawner {
 
         switch (level) {   //Aquí se crean los niveles ( 1,2,3,4...)
             case 1:
-                //enemies = crearEnemigosNivelDonut(gameRect); //los enemigos que tendra el nivel
-                enemies = crearEnemigosMios(gameRect);
+                enemies = crearEnemigosNivelDonut(gameRect); //los enemigos que tendra el nivel
                 break;
             case 2:
                 enemies = crearEnemigosNivelPaquito(gameRect);
@@ -155,15 +154,11 @@ public class EnemySpawner {
     }
 
     public static List<AEnemy> crearEnemigosMios(Rect gameRect) { //Metodo de nuestros bichos.
-        List<AEnemy> enemies = new ArrayList<>();
-
+        List<AEnemy> enemies = new ArrayList<>(); //se almacena
         // Espacio entre enemigos
         int espacioHorizontal = 1;
         int espacioVertical = 1;
-
-
         ArrayList<ArrayList<Integer>> laberinto = new ArrayList<ArrayList<Integer>>();
-
         // laberinto
         laberinto.add(new ArrayList<>(Arrays.asList(1, 1, 1, 0, 0, 0, 0, 1, 1, 1)));
         laberinto.add(new ArrayList<>(Arrays.asList(1, 0, 1, 1, 1, 1, 0, 0, 0, 1)));
@@ -177,27 +172,21 @@ public class EnemySpawner {
         laberinto.add(new ArrayList<>(Arrays.asList(0, 0, 1, 0, 0, 0, 1, 0, 0, 0)));
 
 
-
-
         // Velocidad del enemigo
         int velocidad = 1;
-
         // Generar enemigos según el diseño del laberinto
         for (int fila = 0; fila < laberinto.size(); fila++) {
             for (int columna = 0; columna < laberinto.get(fila).size(); columna++) {
-                if (laberinto.get(fila).get(columna) == 1) {
+                if (laberinto.get(fila).get(columna) == 1) {  //si es 1 se añade el enemigo.
                     // Calcular las coordenadas X e Y del enemigo
                     int posX = columna * espacioHorizontal;
                     int posY = fila * espacioVertical;
-
                     // Agregar el enemigo a la lista
                     enemies.add(eBarrera(E_BARRIERDOWN, ENEMYSHIP_SPRITE_IMAGE_2, 60, gameRect, posX, posY, velocidad));
                 }
             }
         }
-
         return enemies;
-
 
     }
 
@@ -206,7 +195,7 @@ public class EnemySpawner {
     public static EnemyTow eBarrera(EEnemyType type, Image enemyImage, int impactsMax, Rect gameRect, int i, int j, int vy) {
         EnemyTow e;
         switch (type){
-            case E_TOWER:
+            case    E_TOWER:
                 e = new EnemyTower(enemyImage, impactsMax);
                 break;
             case E_BARRIERDOWN:

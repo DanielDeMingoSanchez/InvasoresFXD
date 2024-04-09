@@ -9,18 +9,18 @@ import static com.aetxabao.invasoresfx.game.AppConsts.ebROW;
 
 public class EnemyTow extends AEnemy implements IHaveShield{
 
-    private Ametralladora Gun;
-    int impactMax;
-    int impacts;
+    private Ametralladora Gun; // El arma del enemigo
+    int impactMax; // El máximo de impactos que el enemigo puede recibir antes de ser destruido.
+    int impacts; //contador impactos.
 
     public EnemyTow(Image img,int impactMax) {
         super(img, ebROW, ebCOL);
         this.impactMax = impactMax;
         this.impacts = 0;
-        this.weapon = new Ametralladora();
+        this.weapon = new Ametralladora();// Instancia una nueva ametralladora para el enemigo.
     }
 
-    @Override
+    @Override //actualiza el etado del enemigo
     public void update() {
         updateFrame();
     }
@@ -41,7 +41,7 @@ public class EnemyTow extends AEnemy implements IHaveShield{
         return impacts==impactMax;
     }
 
-    @Override
+    @Override  //metodo representa el área ocupada.
     public Rect getRect() {
         int sliceWidth = width / rows;
         int numSlices = rows - currentFrame;
